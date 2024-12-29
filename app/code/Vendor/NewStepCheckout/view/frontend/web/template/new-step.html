@@ -1,0 +1,20 @@
+<form class="form form-login" data-bind="submit: login" method="post">
+    <fieldset id="customer-email-fieldset" class="fieldset" data-bind="blockLoader: emailValidationInProgress">
+        <div class="field required">
+            <label class="label" for="customer-email"><span data-bind="i18n: 'Email Address'"></span></label>
+            <div class="control _with-tooltip">
+                <input class="input-text"
+                       type="email"
+                       data-bind="
+                            textInput: email,
+                            event: { blur: function() { checkEmailAvailability(email()) } }"
+                       name="username"
+                       id="customer-email" />
+                <span class="note" data-bind="fadeVisible: emailValidationInProgress"><!-- ko i18n: 'Checking email...' --><!-- /ko --></span>
+                <span class="note" data-bind="visible: !isEmailAvailable()"><!-- ko text: emailErrorMessage --><!-- /ko --></span>
+                <span class="note" data-bind="visible: isEmailAvailable()"><!-- ko text: emailErrorMessage --><!-- /ko --></span>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
