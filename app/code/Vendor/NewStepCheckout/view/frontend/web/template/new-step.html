@@ -1,20 +1,115 @@
-<form class="form form-login" data-bind="submit: login" method="post">
-    <fieldset id="customer-email-fieldset" class="fieldset" data-bind="blockLoader: emailValidationInProgress">
-        <div class="field required">
-            <label class="label" for="customer-email"><span data-bind="i18n: 'Email Address'"></span></label>
-            <div class="control _with-tooltip">
-                <input class="input-text"
-                       type="email"
-                       data-bind="
-                            textInput: email,
-                            event: { blur: function() { checkEmailAvailability(email()) } }"
-                       name="username"
-                       id="customer-email" />
-                <span class="note" data-bind="fadeVisible: emailValidationInProgress"><!-- ko i18n: 'Checking email...' --><!-- /ko --></span>
-                <span class="note" data-bind="visible: !isEmailAvailable()"><!-- ko text: emailErrorMessage --><!-- /ko --></span>
-                <span class="note" data-bind="visible: isEmailAvailable()"><!-- ko text: emailErrorMessage --><!-- /ko --></span>
+<div data-bind="visible: isVisible">
+    <!-- Authorization Form -->
+    <form class="form form-authorization" method="post">
+        <fieldset id="customer-email-fieldset" class="fieldset" data-bind="blockLoader: emailValidationInProgress">
+            <!-- Email Field -->
+            <div class="field required">
+                <label class="label" for="customer-email">
+                    <span data-bind="i18n: 'Email Address'"></span>
+                </label>
+                <div class="control _with-tooltip">
+                    <input class="input-text"
+                           type="email"
+                           name="email"
+                           id="customer-email"
+                           data-bind="
+                               textInput: email,
+                               event: { input: function() { checkEmailAvailability(email()) } }"
+                    />
+                    <span class="note" data-bind="visible: emailValidationInProgress">
+                        <span data-bind="i18n: 'Checking email...'"></span>
+                    </span>
+                    <span class="note" data-bind="visible: !isEmailAvailable()">
+                        <span data-bind="text: emailErrorMessage"></span>
+                    </span>
+                    <span class="note" data-bind="visible: isEmailAvailable()">
+                        <span data-bind="text: emailErrorMessage"></span>
+                    </span>
+                </div>
             </div>
-        </div>
 
-    </fieldset>
-</form>
+            <!-- Login Fields -->
+            <div data-bind="visible: showLoginFields">
+                <div class="field required">
+                    <label class="label" for="customer-password">
+                        <span data-bind="i18n: 'Password'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="password"
+                               name="password"
+                               id="customer-password"
+                               data-bind="textInput: password"/>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <button type="button"
+                            class="action primary"
+                            data-bind="click: login, enable: isFormValid, i18n: 'Log In'">
+                        Log In
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Registration Fields -->
+            <div data-bind="visible: showRegistrationFields">
+                <div class="field required">
+                    <label class="label" for="customer-firstname">
+                        <span data-bind="i18n: 'First Name'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="text"
+                               name="firstname"
+                               id="customer-firstname"
+                               data-bind="textInput: firstName"/>
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="customer-lastname">
+                        <span data-bind="i18n: 'Last Name'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="text"
+                               name="lastname"
+                               id="customer-lastname"
+                               data-bind="textInput: lastName"/>
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="customer-password-registration">
+                        <span data-bind="i18n: 'Password'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="password"
+                               name="password"
+                               id="customer-password-registration"
+                               data-bind="textInput: password"/>
+                    </div>
+                </div>
+                <div class="field required">
+                    <label class="label" for="customer-confirm-password">
+                        <span data-bind="i18n: 'Confirm Password'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="password"
+                               name="confirm_password"
+                               id="customer-confirm-password"
+                               data-bind="textInput: confirmPassword"/>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <button type="button"
+                            class="action primary"
+                            data-bind="click: registration, enable: isRegistrationFormValid, i18n: 'Register'">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
