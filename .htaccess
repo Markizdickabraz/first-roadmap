@@ -1,0 +1,41 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^/pub/
+    RewriteCond %{REQUEST_URI} !^/setup/
+    RewriteCond %{REQUEST_URI} !^/update/
+    RewriteCond %{REQUEST_URI} !^/dev/
+    RewriteRule .* /pub/$0 [L]
+</IfModule>
+
+DirectoryIndex index.php
+
+# Disable CORS for localhost:3000
+<IfModule mod_headers.c>
+    <Location />
+        SetEnvIf Origin "http://localhost:3000" AccessControlAllowOrigin=$0
+        Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
+        Header add Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE"
+        Header add Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        Header add Access-Control-Allow-Credentials "true"
+    </Location>
+</IfModule>
+
+
+#ADD IN ENV.PHP
+#'system' => [
+#        'default' => [
+#            'web' => [
+#                'graphql' => [
+#                    'cors_allowed_origins' => 'https://app.first-roadmap.test, http://localhost:3000',
+#                    'cors_allowed_methods' => 'POST, OPTIONS',
+#                    'cors_allowed_headers' => '',
+#                    'cors_max_age' => '86400',
+#                    'cors_allow_credentials' => 1
+#                ],
+#                'api_rest' => [
+#                    'cors_allowed_origins' => 'https://app.first-roadmap.test, http://localhost:3000',
+#                    'cors_allowed_methods' => 'GET, POST, OPTIONS',
+#                    'cors_allowed_headers' => '',
+#                    'cors_max_age' => '86400',
+#                    'cors_allow_credentials' => 0
+#                ],

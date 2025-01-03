@@ -8,23 +8,20 @@ use Magento\GraphQl\Controller\GraphQl as GraphQlController;
 
 class Graphql
 {
-    /**
-     * @param GraphQl $subject
-     * @param callable $proceed
-     * @param RequestInterface $request
-     * @return ResponseInterface
-     */
-    public function aroundDispatch(GraphQlController $subject, callable $proceed, RequestInterface $request): ResponseInterface
-    {
-
-        header("Access-Control-Allow-Origin: http://localhost:3000");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-        header("Access-Control-Allow-Headers: Content-Type, Authorization");
-        header("Access-Control-Allow-Credentials: true");
-
-        return $proceed($request);
+    public function beforeDispatch(
+        GraphQlController $subject,
+        RequestInterface $request
+    ) {
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            header('Access-Control-Allow-Origin: http://localhost:3000');
+            header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
+            header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+            header('Access-Control-Allow-Credentials: true');
+            header('Content-Length: 0');
+            header('Content-Type: text/plain');
+            exit(0);
+        }
     }
-
     /**
      * @param GraphQl $subject
      * @param ResponseInterface $result
@@ -33,13 +30,10 @@ class Graphql
      */
     public function afterDispatch(GraphQlController $subject, ResponseInterface $result, RequestInterface $request): ResponseInterface
     {
-        $result->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-        $result->setHeader('Access-Control-Allow-Method', 'GET, POST, PUT, DELETE, OPTIONS');
-        $result->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-        $result->setHeader('Access-Control-Allow-Credentials', true);
-
-
-
+        $result->setHeader('Access-Control-Allow-Origin', 'http://localhost:3000', true);
+        $result->setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE', true);
+        $result->setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With', true);
+        $result->setHeader('Access-Control-Allow-Credentials', 'true', true);
         return $result;
     }
 }
