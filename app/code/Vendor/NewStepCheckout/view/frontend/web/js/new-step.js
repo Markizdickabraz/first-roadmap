@@ -8,8 +8,9 @@ define([
     'Magento_Customer/js/customer-data',
     'Magento_Customer/js/action/login',
     'Magento_Ui/js/model/messageList',
-    'mage/translate'
-], function (ko, $, Component, storage, stepNavigator, customer, customerData, loginAction, messageList, $t) {
+    'mage/translate',
+    'mage/url'
+], function (ko, $, Component, storage, stepNavigator, customer, customerData, loginAction, messageList, $t, url) {
     'use strict';
 
     return Component.extend({
@@ -30,12 +31,13 @@ define([
         isEmailAvailable: ko.observable(true),
         emailValidationInProgress: ko.observable(false),
         emailErrorMessage: ko.observable(''),
+        redirectUrl: url.build('checkout'),
 
         initialize: function () {
             this._super();
 
             if (customer.isLoggedIn()) {
-                stepNavigator.navigate('shipping');
+                return;
             } else {
                 this._bindEmailBlurEvent();
             }
@@ -113,10 +115,8 @@ define([
                 username: this.email(),
                 password: this.password(),
             };
-            const baseUrl = window.location.origin;
-            const redirectUrl = `${baseUrl}/checkout/`;
 
-            loginAction(loginData, redirectUrl, true, messageList).fail(() => {
+            loginAction(loginData, this.redirectUrl, true, messageList).fail(() => {
                 this.emailErrorMessage($t('Invalid login credentials. Please try again.'));
             });
         },
@@ -150,10 +150,8 @@ define([
                                 username: this.email(),
                                 password: this.password()
                             };
-                            const baseUrl = window.location.origin;
-                            const redirectUrl = `${baseUrl}/checkout/`;
 
-                            loginAction(loginData, redirectUrl, true, messageList).fail(() => {
+                            loginAction(loginData, this.redirectUrl, true, messageList).fail(() => {
                                 this.emailErrorMessage($t('Failed to log in after registration.'));
                             });
                         })
