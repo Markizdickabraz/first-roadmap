@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Vendor\Todo\Model\Resolver\GetCustomerTodos">
+        <arguments>
+            <argument name="collectionFactory" xsi:type="object">Vendor\Todo\Model\ResourceModel\Task\CollectionFactory</argument>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session</argument>
+        </arguments>
+    </type>
+
+    <type name="Vendor\Todo\Model\Resolver\DeleteTask">
+        <arguments>
+            <argument name="taskRepository" xsi:type="object">Vendor\Todo\Model\TaskRepository</argument>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session</argument>
+        </arguments>
+    </type>
+    <type name="Vendor\Todo\Model\Resolver\CreateTask">
+        <arguments>
+            <argument name="taskFactory" xsi:type="object">Vendor\Todo\Model\TaskFactory</argument>
+            <argument name="taskResource" xsi:type="object">Vendor\Todo\Model\ResourceModel\Task</argument>
+        </arguments>
+    </type>
+</config>

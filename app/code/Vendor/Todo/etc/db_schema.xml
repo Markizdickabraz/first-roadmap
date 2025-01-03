@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="vendor_todo_task" resource="default" engine="innodb" comment="vendor_todo_task Table">
+        <column xsi:type="int" name="task_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="task_id"/>
+        </constraint>
+        <column name="customer_id" nullable="false" xsi:type="text" comment="customer_id"/>
+        <column name="title" nullable="false" xsi:type="text" comment="title"/>
+        <column name="date" nullable="false" xsi:type="date" comment="date"/>
+        <column name="text" nullable="false" xsi:type="text" comment="text"/>
+        <column name="status" nullable="false" xsi:type="text" comment="status"/>
+    </table>
+</schema>

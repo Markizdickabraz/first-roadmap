@@ -1,0 +1,27 @@
+type Query {
+    getCustomerTodos: [TaskOutput] @resolver(class: "Vendor\\Todo\\Model\\Resolver\\GetCustomerTodos")
+}
+
+type Mutation {
+    deleteTask(taskId: Int!): DeleteTaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\DeleteTask")
+    createTask(input: TaskInput!): TaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\CreateTask")
+}
+
+type TaskOutput {
+    id: ID!
+    title: String!
+    text: String
+    date: String
+    status: String
+}
+
+input TaskInput {
+    title: String!
+    text: String
+    date: String
+}
+
+type DeleteTaskOutput {
+    success: Boolean
+    message: String
+}
