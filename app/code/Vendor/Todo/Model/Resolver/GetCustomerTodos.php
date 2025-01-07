@@ -43,7 +43,7 @@ class GetCustomerTodos implements ResolverInterface
         $result = [];
         foreach ($tasks as $task) {
             $result[] = [
-                'id' => $task->getId(),
+                'id' => $task->getTaskId(),
                 'title' => $task->getTitle(),
                 'text' => $task->getText(),
                 'date' => $task->getDate(),

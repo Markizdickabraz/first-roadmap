@@ -36,6 +36,7 @@ class CreateTask implements ResolverInterface
 
         $task = $this->taskFactory->create();
         $task->setData([
+            'task_id' => $args['input']['id'],
             'title' => $args['input']['title'],
             'text' => $args['input']['text'] ?? '',
             'date' => $args['input']['date'],
@@ -50,7 +51,7 @@ class CreateTask implements ResolverInterface
         }
 
         return [
-            'id' => $task->getId(),
+            'id' => $task->getTaskId(),
             'title' => $task->getTitle(),
             'text' => $task->getText(),
             'date' => $task->getDate(),

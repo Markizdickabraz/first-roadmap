@@ -11,7 +11,11 @@ class Task extends AbstractModel
         $this->_init('Vendor\Todo\Model\ResourceModel\Task');
     }
 
-    // Setters
+    // Settersz
+    public function setTaskId($taskId)
+    {
+        return $this->setData('task_id', $taskId);
+    }
     public function setTitle($title)
     {
         return $this->setData('title', $title);
@@ -33,6 +37,15 @@ class Task extends AbstractModel
     }
 
     // Getters
+    public function getId()
+    {
+        return $this->getData('id');
+    }
+
+    public function getTaskId()
+    {
+        return $this->getData('task_id');
+    }
     public function getTitle()
     {
         return $this->getData('title');

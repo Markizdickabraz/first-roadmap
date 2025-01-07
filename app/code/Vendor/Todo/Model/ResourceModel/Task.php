@@ -8,7 +8,7 @@ class Task extends AbstractDb
 {
     protected function _construct()
     {
-        $this->_init('vendor_todo_task', 'task_id');
+        $this->_init('vendor_todo_task', 'id');
     }
 
     public function deleteTask($taskId)

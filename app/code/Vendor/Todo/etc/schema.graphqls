@@ -3,12 +3,12 @@ type Query {
 }
 
 type Mutation {
-    deleteTask(taskId: Int!): DeleteTaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\DeleteTask")
+    deleteTask(taskId: String!): DeleteTaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\DeleteTask")
     createTask(input: TaskInput!): TaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\CreateTask")
 }
 
 type TaskOutput {
-    id: ID!
+    id: String!
     title: String!
     text: String
     date: String
@@ -16,6 +16,7 @@ type TaskOutput {
 }
 
 input TaskInput {
+    id: String
     title: String!
     text: String
     date: String
