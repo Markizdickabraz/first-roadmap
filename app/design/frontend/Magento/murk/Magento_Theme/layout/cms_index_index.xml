@@ -82,6 +82,52 @@
             <block name="mark.custom.block.time.cacheable" template="Magento_Theme::time-cacheable.phtml"
                    cacheable="false"/>
         </container>
+
+        <container name="ui.init.render.child.and.track.component.container">
+            <block name="ui.init.render.child.and.track.component.block" template="Magento_Theme::ui-components.phtml" />
+        </container>
+
+        <container name="ui.import.export.container">
+            <block name="ui.import.export.block" template="Magento_Theme::ui-import-export.phtml" />
+        </container>
+
+        <container name="ui.render.child.container">
+            <block name="ui.render.child.block" template="Magento_Theme::ui-parent.phtml" />
+        </container>
+        <container name="ui.literals.container">
+            <block name="ui.literals.block" template="Magento_Theme::ui-literals.phtml" />
+        </container>
+        <container name="ui.statefull.container">
+            <block name="ui.statefull.block" template="Magento_Theme::ui-statefull.phtml" />
+        </container>
+        <container name="ui.get.set.container">
+            <block name="ui.get.set.block" template="Magento_Theme::ui-get-set.phtml" />
+        </container>
+
+        <container name="ui.layout.configure.container">
+            <block name="ui.layout.configure.block" template="Magento_Theme::ui-layout-configure.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="ui-layout-configure" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_Theme/js/view/ui-layout-configure</item>
+                                <item name="template" xsi:type="string">Magento_Theme/ui-layout-configure</item>
+                                <item name="deps" xsi:type="array">
+                                    <item name="0" xsi:type="string">customProvider</item>
+                                </item>
+                            </item>
+                            <item name="customProvider" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="items" xsi:type="array">
+                                    <item name="0" xsi:type="string">item 1</item>
+                                    <item name="1" xsi:type="string">item 2</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </container>
     </referenceContainer>
 
     <body/>

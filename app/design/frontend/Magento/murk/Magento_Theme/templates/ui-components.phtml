@@ -1,0 +1,24 @@
+<div data-bind="scope: 'custom-scope'">
+<!--     ko template: getTemplate() -->
+    is loading
+    <!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "custom-scope": {
+                        "component": "Magento_Theme/js/view/ui-init-and-track",
+                        "children": {
+                            "child": {
+                                "component": "Magento_Theme/js/view/ui-init-and-track"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,19 @@
+<div data-bind="scope: 'get-set'">
+    <!--     ko template: getTemplate() -->
+    is loading
+    <!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "get-set": {
+                        "component": "Magento_Theme/js/view/ui-get-set"
+                    }
+                }
+            }
+        }
+    }
+</script>

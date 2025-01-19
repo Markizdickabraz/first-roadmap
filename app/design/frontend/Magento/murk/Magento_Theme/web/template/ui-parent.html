@@ -1,0 +1,13 @@
+<button data-bind="click: addChild">Add child</button>
+<button data-bind="click: destroyChildren">Remove children</button>
+
+<div style="display: flex">
+    <ul style="flex-grow: 1" data-bind="foreach: getRegion('left')" >
+        <!--    ko template : getTemplate()-->
+        <!--    /ko-->
+    </ul>
+    <ul style="flex-grow: 1" data-bind="foreach: getRegion('right')" >
+        <!--    ko template : getTemplate()-->
+        <!--    /ko-->
+    </ul>
+</div>

@@ -6,4 +6,4 @@
 
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::THEME, 'frontend/Magento/mark', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::THEME, 'frontend/Magento/murk', __DIR__);

@@ -1,0 +1,18 @@
+<div data-bind="scope:'parent' ">
+<!--    ko template: getTemplate()-->
+<!--    /ko-->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "parent": {
+                        "component": "Magento_Theme/js/view/ui-render-child"
+                    }
+                }
+            }
+        }
+    }
+</script>
