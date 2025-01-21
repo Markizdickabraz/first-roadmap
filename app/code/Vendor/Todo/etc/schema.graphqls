@@ -5,7 +5,7 @@ type Query {
 type Mutation {
     deleteTask(taskId: String!): DeleteTaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\DeleteTask")
     createTask(input: TaskInput!): TaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\CreateTask")
-    changeStatusTask(taskId: String!): ChangeTaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\ChangeStatusTask")
+    changeStatusTask(taskId: String!, status: String!): ChangeTaskOutput @resolver(class: "Vendor\\Todo\\Model\\Resolver\\ChangeStatusTask")
 }
 
 type TaskOutput {

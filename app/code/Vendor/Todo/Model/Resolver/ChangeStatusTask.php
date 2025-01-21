@@ -28,7 +28,7 @@ class ChangeStatusTask implements ResolverInterface
         }
 
         try {
-            $this->taskResource->changeStatusTask($args['taskId']);
+            $this->taskResource->changeStatusTask($args['taskId'], $args['status']);
         } catch (\Exception $e) {
             throw new LocalizedException(__('Cannot change status task: %1', $e->getMessage()));
         }
