@@ -13,8 +13,7 @@ define([
 
             _bindSearchTop: function () {
                 const titleElement = this.element.find('[data-role="title"]');
-                const resultList = this.element.find('ul');
-
+                const resultList = $('.collapsible-content');
                 titleElement.on('click', () => {
                     const colTitle = $('.collapsible__title').attr('aria-selected');
                     if (colTitle === 'false') {
