@@ -16,4 +16,14 @@ class Task extends AbstractDb
         $connection = $this->getConnection();
         $connection->delete($this->getMainTable(), ['task_id = ?' => $taskId]);
     }
+
+    public function changeStatusTask($taskId, $newStatus)
+    {
+        $connection = $this->getConnection();
+        $connection->update(
+            $this->getMainTable(),
+            ['status' => $newStatus],
+            ['task_id = ?' => $taskId]
+        );
+    }
 }
